@@ -19,6 +19,4 @@ Customer insert(Customer customer) throws DataAccessException;
 
 	void delete(int id) throws DataAccessException;
 	
-
-	//TODO some methods are missing
 }
