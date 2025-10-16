@@ -18,8 +18,8 @@ public class CustomerDB implements CustomerDAO {
 	private static final String PS_SELECT = "SELECT * FROM Customer";
 	private static final String PS_UPDATE = "UPDATE Customer SET Name = ?, Address = ?, Zipcode = ?, City = ?, PhoneNo = ? WHERE CustomerNo = ?";
 	private static final String PS_DELETE = "DELETE FROM Customer WHERE CustomerNo = ?";
-	private static final String PS_SELECT_PRIVATE = "SELECT * FROM PrivateCustomer WHERE cvr = ?";
-	private static final String PS_SELECT_BUSINESS = "SELECT * FROM BusinessCustomer WHERE email = ?";
+	private static final String PS_SELECT_PRIVATE = "SELECT * FROM PrivateCustomer WHERE email = ?";
+	private static final String PS_SELECT_BUSINESS = "SELECT * FROM BusinessCustomer WHERE cvr = ?";
 	
 	private PreparedStatement insertPS;
 	private PreparedStatement selectByIdPS;

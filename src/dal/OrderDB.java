@@ -144,30 +144,35 @@ public class OrderDB implements OrderDAO {
 	
 	@Override
 	public List<Order> getAll() throws DataAccessException {
-		List<Order> orders = new ArrayList<>();
-		ResultSet resultSet;
+	    List<Order> listOrder = new ArrayList<>();
+	    try {
+	        ResultSet rs = selectPS.executeQuery();
+	        while (rs.next()) {
+	            Order order = buildObject(rs);
+	            listOrder.add(order);
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	        throw new DataAccessException(DBMessages.COULD_NOT_READ_RESULTSET, e);
+	    }
+	    return listOrder;
+	}
+
+
+	private Order buildObject(ResultSet rs) {
+		Order order = null;
 		try {
-			resultSet = selectPS.executeQuery();
+			order = new Order();
+			order.setOrderNo(rs.getInt("OrderNo"));
+			//order.setItems(rs.getArray("Items"));
+			order.setAmount(rs.getDouble("Amount"));
+			order.setDeliveryStatus(rs.getString("DeliveryStatus"));
+			order.setDateToCurrent(); // Placeholder, should convert from SQL date
+			order.setCustomer(null); // Placeholder, should fetch customer by ID
 		} catch (SQLException e) {
-			throw new DataAccessException(DBMessages.COULD_NOT_BIND_OR_EXECUTE_QUERY, e);
+			e.printStackTrace();
 		}
-		
-		try {
-			while (resultSet.next()) {
-				Order order = new Order();
-				order.setOrderNo(resultSet.getInt("OrderNo"));
-				//order.setItems(resultSet.getArray("Items"));
-				order.setAmount(resultSet.getDouble("Amount"));
-				order.setDeliveryStatus(resultSet.getString("DeliveryStatus"));
-				order.setDateToCurrent(); // Placeholder, should convert from SQL date
-				order.setCustomer(null); // Placeholder, should fetch customer by ID
-				orders.add(order);
-			}
-		} catch (SQLException e) {
-			throw new DataAccessException(DBMessages.COULD_NOT_READ_RESULTSET, e);
-		}
-		
-		return orders;
+		return order;
 	}
 	
 
