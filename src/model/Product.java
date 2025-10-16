@@ -5,6 +5,12 @@ public class Product {
 	private String name;
 	private int minStock;
 	private int reservedQty;
+	public Product(int productNo, String name, int minStock, int reservedQty) {
+		this.productNo = productNo;
+		this.minStock = minStock;
+		this.name = name;
+		this.reservedQty = reservedQty;
+	}
 	
 	public Product() {
 		
