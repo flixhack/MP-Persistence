@@ -7,9 +7,25 @@ public class Customer {
 	private String city;
 	private int phoneNo;
 	private int customerNo;
+	private int CustomerID;
 	
-	public Customer() {
+	public Customer(int CustomerID) {
+		this.CustomerID = CustomerID;
 		
+	}
+	
+	public Customer(String name, String address, int zipcode, String city, int phoneNo, int customerNo) {
+		this.name = name;
+		this.address = address;
+		this.zipcode = zipcode;
+		this.city = city;
+		this.phoneNo = phoneNo;
+		this.customerNo = customerNo;
+	}
+	
+	public Customer(int CustomerID, String name, String address, int zipcode, String city, int phoneNo, int customerNo) {
+		this(name, address, zipcode, city, phoneNo, customerNo);
+		this.setCustomerID(CustomerID);
 	}
 
 	public String getName() {
@@ -58,6 +74,14 @@ public class Customer {
 
 	public void setCustomerNo(int customerNo) {
 		this.customerNo = customerNo;
+	}
+
+	public int getCustomerID() {
+		return CustomerID;
+	}
+
+	public void setCustomerID(int customerID) {
+		CustomerID = customerID;
 	}
 
 }

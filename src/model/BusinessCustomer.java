@@ -1,17 +1,17 @@
 package model;
 
 public class BusinessCustomer extends Customer {
-	private String cvrNo;
+	private int cvrNo;
 	
 	public BusinessCustomer() {
 		
 	}
 
-	public String getCvrNo() {
+	public int getCvrNo() {
 		return cvrNo;
 	}
 
-	public void setCvrNo(String cvrNo) {
+	public void setCvrNo(int cvrNo) {
 		this.cvrNo = cvrNo;
 	}
 

@@ -11,7 +11,7 @@ public class PrivateCustomer extends Customer {
 		return Email;
 	}
 
-	public void setCprNo(String Email) {
+	public void setEmail(String Email) {
 		this.Email = Email;
 	}
 
