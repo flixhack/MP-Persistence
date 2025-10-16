@@ -9,7 +9,7 @@ public class Order {
 	private ArrayList<Orderline> items;
 	private LocalDate date;
 	private double amount;
-	private int deliveryStatus;
+	private String deliveryStatus;
 	private LocalDate deliveryDate;
 	private Customer customer;
 	
@@ -57,7 +57,20 @@ public class Order {
 	public int getOrderNo() {
 		return orderNo;
 	}
+	public String getDeliveryStatus() {
+		return deliveryStatus;
+	}
 	
+	public void setDeliveryStatus(String deliveryStatus) {
+		this.deliveryStatus = deliveryStatus;
+	}
+	public LocalDate getDeliveryDate() {
+		return deliveryDate;
+	}
+	
+	public void setDeliveryDate(LocalDate deliveryDate) {
+		this.deliveryDate = deliveryDate;
+	}
 	
 	
 
