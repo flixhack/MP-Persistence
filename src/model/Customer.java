@@ -13,6 +13,9 @@ public class Customer {
 		this.CustomerID = CustomerID;
 		
 	}
+	public Customer() {
+		
+	}
 	
 	public Customer(String name, String address, int zipcode, String city, int phoneNo, int customerNo) {
 		this.name = name;
