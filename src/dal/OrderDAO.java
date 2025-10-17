@@ -1,8 +1,10 @@
 package dal;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import model.Order;
+import model.Orderline;
 
 public interface OrderDAO {
 
@@ -15,5 +17,7 @@ public interface OrderDAO {
 	Order update(Order order) throws DataAccessException;
 
 	Order insert(Order order) throws DataAccessException;
+	
+	
 
 }
