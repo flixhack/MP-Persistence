@@ -1,16 +1,117 @@
-CREATE TABLE OrderLineItem (
-    OrderLineItemID int IDENTITY (1,1) PRIMARY KEY,
-    Type varchar(255),
-    Amount int,
-    DiscountThreshold int,
-    SaleOrderID int,
-    FOREIGN KEY (SaleOrderID) REFERENCES SaleOrder(SaleOrderID)
-);
-CREATE TABLE Discount (
-    DiscountID int IDENTITY (1,1) PRIMARY KEY,
-    Type varchar(255),
-    Amount int,
-    DiscountThreshold int,
-    SaleOrderID int,
-    FOREIGN KEY (SaleOrderID) REFERENCES SaleOrder(SaleOrderID)
-);
+CREATE TABLE OrderLineItem (  
+
+OrderLineItemID int IDENTITY (1,1) PRIMARY KEY,  
+
+Type varchar(255),  
+
+Amount int,  
+
+DiscountThreshold int, 
+
+SaleOrderID int,  
+
+FOREIGN KEY (SaleOrderID)  
+
+REFERENCES SaleOrder(SaleOrderID) ); 
+
+ 
+
+CREATE TABLE Customer ( 
+
+CustomerID int IDENTITY (1,1) PRIMARY KEY, 
+
+Name varchar(255), 
+
+Address varchar(255), 
+
+Zipcode int, 
+
+City varchar(255), 
+
+PhoneNo int 
+
+); 
+
+CREATE TABLE PrivateCustomer ( 
+
+Email varchar(255), 
+
+FOREIGN KEY (CustomerID) REFERENCES Customer(CustomerID) 
+
+); 
+
+CREATE TABLE BusinessCustomer ( 
+
+CVR varchar(255), 
+
+FOREIGN KEY (CustomerID) REFERENCES Customer(CustomerID) 
+
+); 
+
+ 
+
+CREATE TABLE Product ( 
+
+ProductID int IDENTITY (1,1) PRIMARY KEY, 
+
+ProductNumber int, 
+
+Name varchar(255), 
+
+MinStock int, 
+
+ReserveQTY int 
+
+); 
+
+ 
+
+CREATE TABLE Music ( 
+
+FOREIGN KEY (ProductID) REFERENCES Product(ProductID), 
+
+Format varchar(255), 
+
+Artist varchar(255) 
+
+); 
+
+ 
+
+CREATE TABLE Clothing 
+
+FOREIGN KEY (ProductID) REFERENCES Product(ProductID), 
+
+Size varchar(255), 
+
+Color varchar(255) 
+
+); 
+
+ 
+
+ 
+
+ 
+
+CREATE TABLE Equipment 
+
+FOREIGN KEY (ProductID) REFERENCES Product(ProductID), 
+
+Material varchar(255), 
+
+Style varchar(255) 
+
+); 
+
+ 
+
+CREATE TABLE GunReplica 
+
+FOREIGN KEY (ProductID) REFERENCES Product(ProductID), 
+
+Caliber varchar(255), 
+
+Material varchar(255) 
+
+); 
