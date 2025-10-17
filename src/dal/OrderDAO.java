@@ -18,6 +18,6 @@ public interface OrderDAO {
 
 	Order insert(Order order) throws DataAccessException;
 	
-	
+	void insertOrderLines(Order order) throws DataAccessException;
 
 }

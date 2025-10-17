@@ -91,10 +91,6 @@ public class OrderDB implements OrderDAO {
 			return order;
 	}
 	
-	
-	
-	
-	
 	@Override
 	public Order update(Order order) throws DataAccessException {
 		try {
@@ -193,6 +189,24 @@ public class OrderDB implements OrderDAO {
 		}
 		return order;
 	}
-	
 
+	@Override
+	public void insertOrderLines(Order order) throws DataAccessException {
+	try {
+		for (Orderline ol : order.getItems()) {
+			insertOLPS.setInt(1, order.getOrderNo());
+			insertOLPS.setInt(2, ol.getProduct().getProductNo());
+			insertOLPS.setInt(3, ol.getQty());
+			
+			int rowsAffected = insertOLPS.executeUpdate();
+			if (rowsAffected == 0) {
+				throw new DataAccessException(DBMessages.COULD_NOT_INSERT_ORDERLINE, null);
+			}
+		}
+	} catch (SQLException e) {
+		e.printStackTrace();
+		throw new DataAccessException(DBMessages.COULD_NOT_INSERT_ORDERLINE, e);	
+	}
+	
+	}
 }
