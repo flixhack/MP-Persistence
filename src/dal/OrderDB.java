@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import model.Order;
+import model.Orderline;
 
 public class OrderDB implements OrderDAO {
 	
@@ -17,12 +18,14 @@ public class OrderDB implements OrderDAO {
 	private static final String PS_SELECT = "SELECT * FROM Order";
 	private static final String PS_UPDATE = "UPDATE Order SET Date = ?, Items = ?, Amount = ?, DeliveryStatus = ?, DeliveryDate = ? WHERE Customer = ?";
 	private static final String PS_DELETE = "DELETE FROM Order WHERE CustomerNo = ?";
+	private static final String PS_OLINSERT = "INSERT INTO OrderLineItem VALUES (?, ?, 0, ?)";
 	
 	private PreparedStatement insertPS;
 	private PreparedStatement selectByIdPS;
 	private PreparedStatement selectPS;
 	private PreparedStatement updatePS;
 	private PreparedStatement deletePS;
+	private PreparedStatement insertOLPS;
 	
 	public OrderDB() throws DataAccessException {
 		initPreparedStatement();
@@ -37,6 +40,7 @@ public class OrderDB implements OrderDAO {
 			selectPS = connection.prepareStatement(PS_SELECT);
 			updatePS = connection.prepareStatement(PS_UPDATE);
 			deletePS = connection.prepareStatement(PS_DELETE);
+			insertOLPS = connection.prepareStatement(PS_OLINSERT);
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new DataAccessException(DBMessages.COULD_NOT_PREPARE_STATEMENT, e);
@@ -86,6 +90,9 @@ public class OrderDB implements OrderDAO {
 			}
 			return order;
 	}
+	
+	
+	
 	
 	@Override
 	public Order update(Order order) throws DataAccessException {
