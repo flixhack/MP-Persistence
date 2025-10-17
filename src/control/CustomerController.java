@@ -14,27 +14,24 @@ public class CustomerController {
 	public CustomerController() throws DataAccessException {
 		customerDAO = new CustomerDB();
 	}
-	public Customer createPrivateCustomer(String name, String email) throws DataAccessException {
-		// Step 1: Check if already exists
-		Customer c = customerDAO.findPrivateByEmail(email);
-		if (c == null) {
-			// Step 2: If not, create and insert new PrivateCustomer
-			c = new PrivateCustomer();
-			c = CustomerDB.insert(c); //save to db
-		}
-		return c;
-		
-	}
-	public Customer createBusinessCustomer(String name, int cvr) throws DataAccessException {
-		// Step 1: Check if already exists
-		Customer c = customerDAO.findBusinessByCvr(cvr);
-		if (c == null) {
-			c = new BusinessCustomer();
-			c = customerDAO.insert(c);
-		}
-		return c;
-		
-	}
+	public Customer createPrivateCustomer(String name, String address, int zipcode,String city, int phoneNo, String email)
+            throws DataAccessException {
+           Customer c = customerDAO.findPrivateByEmail(email);
+            if (c == null) {
+             c = new PrivateCustomer(name, address, zipcode, city, phoneNo, 0, email);
+             c = customerDAO.insert(c); // handles DB insertion and sets customerNo
+           }
+            return c;
+            }
+	public Customer createBusinessCustomer(String name, String address, int zipcode, String city, int phoneNo, int cvr)
+            throws DataAccessException {
+             Customer c = customerDAO.findBusinessByCvr(cvr);
+              if (c == null) {
+             c = new BusinessCustomer(name, address, zipcode, city, phoneNo, 0, cvr);
+             c = customerDAO.insert(c);
+             }
+             return c;
+             }
 	
 	public Customer findByEmail(String email) throws DataAccessException {
 		return customerDAO.findPrivateByEmail(email);

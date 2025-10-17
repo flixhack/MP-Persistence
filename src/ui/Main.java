@@ -18,12 +18,12 @@ public class Main {
 
     public static void main(String[] args) {
         Main main = new Main();
-        main.tryCreateCustomer();
+        main.tryCreatePrivateCustomer();
     }
 
-    private void tryCreateCustomer() {
+    private void tryCreatePrivateCustomer() {
         try {
-            Customer s = cc.createPrivateCustomer("123", "Gibe");
+            Customer s = cc.createBusinessCustomer("gibe", "Sofiendalsvej", 9000, "Ålleren", "112", 123);
         } catch (DataAccessException e) {
             e.printStackTrace();
         }
