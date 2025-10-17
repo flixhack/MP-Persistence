@@ -5,6 +5,7 @@ import java.util.List;
 import dal.CustomerDB;
 import dal.CustomerDAO;
 import dal.DataAccessException;
+import model.BusinessCustomer;
 import model.Customer;
 import model.PrivateCustomer;
 
@@ -13,24 +14,28 @@ public class CustomerController {
 	public CustomerController() throws DataAccessException {
 		customerDAO = new CustomerDB();
 	}
-	public Customer createCustomer(String name, String email) throws DataAccessException {
+	public Customer createPrivateCustomer(String name, String email) throws DataAccessException {
 		// Step 1: Check if already exists
 		Customer c = customerDAO.findPrivateByEmail(email);
 		if (c == null) {
 			// Step 2: If not, create and insert new PrivateCustomer
-			PrivateCustomer pc = new PrivateCustomer();
-			pc.setName(name);
-			pc.setEmail(email);
-			pc.setAddress("");
-			pc.setZipcode(0);
-			pc.setCity("");
-			pc.setPhoneNo(0);
-			// save to db
-			c = customerDAO.insert(pc);
+			c = new PrivateCustomer();
+			c = CustomerDB.insert(c); //save to db
 		}
 		return c;
+		
 	}
-
+	public Customer createBusinessCustomer(String name, int cvr) throws DataAccessException {
+		// Step 1: Check if already exists
+		Customer c = customerDAO.findBusinessByCvr(cvr);
+		if (c == null) {
+			c = new BusinessCustomer();
+			c = customerDAO.insert(c);
+		}
+		return c;
+		
+	}
+	
 	public Customer findByEmail(String email) throws DataAccessException {
 		return customerDAO.findPrivateByEmail(email);
 	}
