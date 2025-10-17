@@ -44,6 +44,17 @@ public class OrderDB implements OrderDAO {
 		
 	}
 	
+	/*
+	 * #TODO
+	 * #Start Transaction#
+	 * 
+	 * save order to db
+	 * get orderID
+	 * save orderlines to db with orderID //Order i db indholder ikke products/item/Orderlines, orderlines gemmes i et table for sig, med orderNO // For at rebuild object, select * from orderline where OrderNO = ? | byg orderlines og add til order.
+	 * 
+	 * Commit || Rollback
+	 */
+	
 	@Override
 	public Order insert(Order order) throws DataAccessException {
 		int orderNo = 0;
