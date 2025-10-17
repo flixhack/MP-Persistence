@@ -1,0 +1,16 @@
+CREATE TABLE OrderLineItem (
+    OrderLineItemID int IDENTITY (1,1) PRIMARY KEY,
+    Type varchar(255),
+    Amount int,
+    DiscountThreshold int,
+    SaleOrderID int,
+    FOREIGN KEY (SaleOrderID) REFERENCES SaleOrder(SaleOrderID)
+);
+CREATE TABLE Discount (
+    DiscountID int IDENTITY (1,1) PRIMARY KEY,
+    Type varchar(255),
+    Amount int,
+    DiscountThreshold int,
+    SaleOrderID int,
+    FOREIGN KEY (SaleOrderID) REFERENCES SaleOrder(SaleOrderID)
+);
