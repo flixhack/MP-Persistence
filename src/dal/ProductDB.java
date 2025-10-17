@@ -48,6 +48,7 @@ public class ProductDB implements ProductDAO {
 				insertPS.setInt(2, product.getMinStock());
 				insertPS.setInt(3, product.getReservedQty());
 				insertPS.setInt(4, product.getProductNo());
+				insertPS.setDouble(5, product.getPrice());
 				insertPS.executeUpdate();
 				ResultSet keyRS = insertPS.getGeneratedKeys();
 				if (keyRS.next()) {
@@ -62,7 +63,7 @@ public class ProductDB implements ProductDAO {
 	
 	@Override
 	public Product findById(int id) throws DataAccessException {
-		Product product = null;
+		Product product = new Product();
 		ResultSet resultSet;
 		try {
 			selectByIdPS.setInt(1, id);
@@ -147,6 +148,6 @@ public class ProductDB implements ProductDAO {
 		int minStock = rs.getInt(2);
 		int reservedQty = rs.getInt(3);
 		int productNo = rs.getInt(4);
-		return new Product(minStock,name, reservedQty, productNo);
+		return new Product(minStock,name, reservedQty, productNo, productNo);
 	}
 	}

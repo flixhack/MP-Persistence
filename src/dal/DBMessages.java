@@ -20,5 +20,6 @@ public class DBMessages {
 	public static final String COULD_NOT_INSERT = "Could not insert new record";
 	public static final String COULD_NOT_UPDATE = "Could not update record";
 	public static final String COULD_NOT_GET_GENERATED_KEY = "Could not get generated key";
+	public static final String COULD_NOT_INSERT_ORDERLINE = "Could not insert order line items";
 
 }

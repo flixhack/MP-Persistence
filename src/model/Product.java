@@ -5,11 +5,13 @@ public class Product {
 	private String name;
 	private int minStock;
 	private int reservedQty;
-	public Product(int productNo, String name, int minStock, int reservedQty) {
+	private double price;
+	public Product(int productNo, String name, int minStock, int reservedQty, double price) {
 		this.productNo = productNo;
 		this.minStock = minStock;
 		this.name = name;
 		this.reservedQty = reservedQty;
+		this.price = price;
 	}
 	
 	public Product() {
@@ -46,6 +48,14 @@ public class Product {
 
 	public void setReservedQty(int reservedQty) {
 		this.reservedQty = reservedQty;
+	}
+	
+	public double getPrice() {
+		return price;
+	}
+	
+	public void setPrice(double price) {
+		this.price = price;
 	}
 
 }
